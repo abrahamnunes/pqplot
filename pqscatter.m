@@ -1,10 +1,13 @@
-function s = pqscatter(x, y, stat)
+%==============================================================================
 %PQSCATTER Formats scatterplot for publication quality
 %
 % INPUTS:
 %   stat = {K x 1} cell array of statistics to add to scatter plot
 %
 % 2016 Abraham Nunes
+%==============================================================================
+
+function s = pqscatter(x, y, stat)
 
 load viridis.mat
 colorvec = viridi(floor(linspace(1, 256, size(y, 2))),:);
@@ -20,10 +23,14 @@ switch nargin
 
         if ~isempty(find(strcmp(stat, 'lm')))
             lmline    = true;
+        else
+            lmline = false;
         end
 
         if ~isempty(find(strcmp(stat, 'match')))
             cornerline = true;
+        else
+            cornerline = false;
         end
 
     case 2

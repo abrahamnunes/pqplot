@@ -1,4 +1,4 @@
-function pqlegend(axisobj, labels, location)
+%==============================================================================
 %PQLEGEND Adds legend to publication quality plot
 %
 % INPUT:
@@ -7,6 +7,8 @@ function pqlegend(axisobj, labels, location)
 %   location = string with legend location
 %
 % 2016 Abraham Nunes
+%==============================================================================
+function pqlegend(axisobj, labels, location)
 
     leg = legend(axisobj, labels);
     set(leg, 'Location', location);
