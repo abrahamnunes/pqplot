@@ -4,13 +4,20 @@
 % INPUTS:
 %   stat = {K x 1} cell array of statistics to add to scatter plot
 %
+% OUTPUTS:
+%   g = pqplot object
+%
 % 2016 Abraham Nunes
 %==============================================================================
 
-function s = pqscatter(x, y, stat)
+function g = pqscatter(x, y, stat)
 
 load viridis.mat
-colorvec = viridi(floor(linspace(1, 256, size(y, 2))),:);
+if size(y, 2) > 1
+    colorvec = viridi(floor(linspace(1, 256, size(y, 2))),:);
+else
+    colorvec = viridi(1,:);
+end
 
 switch nargin
     case 3
@@ -96,6 +103,6 @@ if adjustlimits == true
     end
 end
 
-s = gca;
+g.axes = gca;
 
 end
