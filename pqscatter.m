@@ -79,7 +79,7 @@ for i = 1:size(y, 2)
     s.MarkerFaceColor = colorvec(i,:);
     s.MarkerEdgeColor = [0. 0. 0.];
     s.MarkerFaceAlpha = 0.6;
-    s.SizeData        = 60;
+    s.SizeData        = 40;
     s.LineWidth       = 1;
 end
 hold off;

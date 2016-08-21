@@ -1,10 +1,10 @@
-function s = pqcorrelogram(x, xlabels)
+function g = pqcorrelogram(x, xlabels)
 
     load viridis.mat
 
     [corrs, cpvals] = corr(x);
 
-    imagesc(flipud(corrs), [0. 1.]);
+    im = imagesc(flipud(corrs), [0. 1.]);
     colormap(viridi);
     cb = colorbar;
     set(cb               , ...
@@ -19,6 +19,7 @@ function s = pqcorrelogram(x, xlabels)
         'TickLength', [0. 0.]         , ...
         'LineWidth' , 1.5             );
 
-    s = gca;
+    g.corgram = im;
+    g.axes    = gca;
 
 end
