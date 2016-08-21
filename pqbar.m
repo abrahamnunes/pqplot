@@ -17,10 +17,16 @@ function g = pqbar(x, y)
     load viridis.mat
 
     s = bar(y);
+    set(s, 'LineWidth', 1.5);
 
-    set(s                                 , ...
-        'FaceColor', viridi(floor(256/4),:), ...
-        'LineWidth', 1.5                  );
+    if size(y, 1) > 1 && size(y, 2) > 1
+        barcolors = viridi(floor(linspace(1, 256, size(y, 2))),:);
+        for i = 1:size(y, 2)
+            set(s(i), 'FaceColor', barcolors(i, :));
+        end
+    else
+        set(s, 'FaceColor', viridi(floor(256/4),:));
+    end
 
     set(gca                                                        , ...
         'FontSize'          , 14                                   , ...
