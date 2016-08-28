@@ -2,6 +2,7 @@
 
 Some functions for easily generating publication quality plots in Matlab with all of the `set()` and `get()` stuff built in.
 
+- This is in no way a flexible package ready for general use. I've just been creating functions here and there based on my needs at the time.
 - Currently, this uses the viridis colourmap
 
 ## Examples
@@ -126,10 +127,3 @@ ylabel('Values');
 ```
 
 <img src="http://www.abrahamnunes.com/images/pqplot/pqbarmulti.svg" width="100%">
-
-# Issues
-
-- [ ] Functions should become still more general
-- [ ] There are some problems with labeling series (sometimes regression lines get labeled)
-- [ ] Scatterplot points sometimes show up not perfectly rounded
-- [ ] Fix labeling in correlogram
