@@ -23,7 +23,7 @@ xlabel('X Label');
 ylabel('Y Label');
 
 ```
-<img src="http://www.abrahamnunes.com/images/pqplot/pqscatter.svg" width="100%" height="300">
+<img src="http://www.abrahamnunes.com/images/pqplot/pqscatter.svg" width="100%">
 
 #### Actual vs. Estimate Scatterplots and Plotting Least Squares Regression Lines
 
