@@ -129,7 +129,7 @@ ylabel('Values');
 
 # Issues
 
-[] Functions should become still more general
-[] There are some problems with labeling series (sometimes regression lines get labeled)
-[] Scatterplot points sometimes show up not perfectly rounded
-[] Fix labeling in correlogram
+[ ] Functions should become still more general
+[ ] There are some problems with labeling series (sometimes regression lines get labeled)
+[ ] Scatterplot points sometimes show up not perfectly rounded
+[ ] Fix labeling in correlogram
