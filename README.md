@@ -86,3 +86,50 @@ ylabel('Estimate');
 ```
 
 <img src="http://www.abrahamnunes.com/images/pqplot/pqscattermulti.svg" width="100%">
+
+### Bar Plots
+
+Bar plots can be created with the `pqbar` function
+
+``` matlab
+
+% Bar plot with pqbar()
+
+rng(123);
+labelsx = {'A', 'B', 'C'};
+y = rand(1, 3)*10;
+
+figure();
+s = pqbar(labelsx, y);
+pqtitle(s, 'PQ Bar Plot');
+ylabel('Values');
+
+```
+
+<img src="http://www.abrahamnunes.com/images/pqplot/pqbar.svg" width="100%">
+
+The `pqbar` function can also plot multiple series per xlabel. Just add each series as a new column in the array `y`:
+
+``` matlab
+
+% Bar plot with pqbar()
+
+rng(123);
+labelsx = {'A', 'B', 'C'};
+y = rand(3, 5)*10;
+
+figure();
+s = pqbar(labelsx, y);
+pqtitle(s, 'PQ Bar Plot Multi-Series');
+ylabel('Values');
+
+```
+
+<img src="http://www.abrahamnunes.com/images/pqplot/pqbarmulti.svg" width="100%">
+
+# Issues
+
+[] Functions should become still more general
+[] There are some problems with labeling series (sometimes regression lines get labeled)
+[] Scatterplot points sometimes show up not perfectly rounded
+[] Fix labeling in correlogram
