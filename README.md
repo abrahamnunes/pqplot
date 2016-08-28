@@ -24,3 +24,65 @@ ylabel('Y Label');
 
 ```
 <img src="http://www.abrahamnunes.com/images/pqplot/pqscatter.svg" width="100%" height="300">
+
+#### Actual vs. Estimate Scatterplots and Plotting Least Squares Regression Lines
+
+This function was originally created to compare accuracy of a model-fitting algorithm's parameter estimates compared to the true ones. As such, there exists an option third argument in `pqscatter` which accepts a cell array containing one or more of `'match'`, which plots a diagonal line from the origin to the top right-hand corner, or `'lm'` which plots an ordinary least-squares regression line to the data series.
+
+``` matlab
+
+% Creating an Actual vs. Estimate PQ ScatterPlot
+
+rng(123);
+x = randn(100, 1);
+y = 1.5*x + 0.2*randn(100, 1);
+
+figure();
+s = pqscatter(x, y, {'match'});
+pqtitle(s, 'PQ Actual vs. Estimate Plot');
+xlabel('Actual');
+ylabel('Estimate');
+
+```
+
+<img src="http://www.abrahamnunes.com/images/pqplot/pqactualestimate.svg" width="100%" height="300">
+
+``` matlab
+
+% Creating an Actual vs. Estimate PQ ScatterPlot with an additional least squares fit line
+
+rng(123);
+x = randn(100, 1);
+y = 1.5*x + 0.2*randn(100, 1);
+
+figure();
+s = pqscatter(x, y, {'match', 'lm'});
+pqtitle(s, 'PQ Actual vs. Estimate Plot');
+xlabel('Actual');
+ylabel('Estimate');
+
+```
+
+<img src="http://www.abrahamnunes.com/images/pqplot/pqactualestimatelm.svg" width="100%" height="300">
+
+#### Plotting multiple series with `pqscatter`
+
+Just have `y`  be a matrix with each series you wish to plot as an individual column in that matrix.
+
+``` matlab
+
+% Plotting multiple series with pqscatter
+
+rng(123);
+x = randn(100, 1);
+y = meshgrid(0.5:2.5, 1:100).*repmat(x, 1, 3) + 0.2*randn(100, 3);
+
+figure();
+s = pqscatter(x, y, {'match', 'lm'});
+pqtitle(s, 'PQ Actual vs. Estimate Plot');
+xlabel('Actual');
+ylabel('Estimate');
+
+```
+
+<img src="http://www.abrahamnunes.com/images/pqplot/pqscattermulti.svg" width="100%" height="300">
