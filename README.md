@@ -45,7 +45,7 @@ ylabel('Estimate');
 
 ```
 
-<img src="http://www.abrahamnunes.com/images/pqplot/pqactualestimate.svg" width="100%" height="300">
+<img src="http://www.abrahamnunes.com/images/pqplot/pqactualestimate.svg" width="100%">
 
 ``` matlab
 
@@ -63,7 +63,7 @@ ylabel('Estimate');
 
 ```
 
-<img src="http://www.abrahamnunes.com/images/pqplot/pqactualestimatelm.svg" width="100%" height="300">
+<img src="http://www.abrahamnunes.com/images/pqplot/pqactualestimatelm.svg" width="100%">
 
 #### Plotting multiple series with `pqscatter`
 
@@ -85,4 +85,4 @@ ylabel('Estimate');
 
 ```
 
-<img src="http://www.abrahamnunes.com/images/pqplot/pqscattermulti.svg" width="100%" height="300">
+<img src="http://www.abrahamnunes.com/images/pqplot/pqscattermulti.svg" width="100%">
