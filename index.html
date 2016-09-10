@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Pqplot by abrahamnunes</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Pqplot</h1>
+        <p>Publication quality plots in matlab</p>
+
+        <p class="view"><a href="https://github.com/abrahamnunes/pqplot">View the Project on GitHub <small>abrahamnunes/pqplot</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/abrahamnunes/pqplot/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/abrahamnunes/pqplot/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/abrahamnunes/pqplot">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="pqplot" class="anchor" href="#pqplot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PQPLOT</h1>
+
+<p>Some functions for easily generating publication quality plots in Matlab with all of the <code>set()</code> and <code>get()</code> stuff built in.</p>
+
+<ul>
+<li>This is in no way a flexible package ready for general use. I've just been creating functions here and there based on my needs at the time.</li>
+<li>Currently, this uses the viridis colourmap</li>
+</ul>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
+
+<h3>
+<a id="scatterplot" class="anchor" href="#scatterplot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Scatterplot</h3>
+
+<p>Scatterplots can be created with the <code>pqscatter</code> function. Title can be added with the <code>pqtitle</code> function, which takes the pqplot object <code>s</code> (in the example below) as the first argument.</p>
+
+<div class="highlight highlight-source-matlab"><pre><span class="pl-c">% Creating a PQ ScatterPlot</span>
+rng(<span class="pl-c1">123</span>);
+x = <span class="pl-k">randn</span>(<span class="pl-c1">100</span>, <span class="pl-c1">1</span>);
+y = <span class="pl-c1">1.5</span>*x <span class="pl-k">+</span> <span class="pl-c1">0.2</span>*<span class="pl-k">randn</span>(<span class="pl-c1">100</span>, <span class="pl-c1">1</span>);
+
+<span class="pl-c1">figure</span>();
+s = pqscatter(x, y);
+pqtitle(s, <span class="pl-s"><span class="pl-pds">'</span>PQ Scatter Plot<span class="pl-pds">'</span></span>);
+<span class="pl-c1">xlabel</span>(<span class="pl-s"><span class="pl-pds">'</span>X Label<span class="pl-pds">'</span></span>);
+<span class="pl-c1">ylabel</span>(<span class="pl-s"><span class="pl-pds">'</span>Y Label<span class="pl-pds">'</span></span>);
+</pre></div>
+
+<p><img src="http://www.abrahamnunes.com/images/pqplot/pqscatter.svg" width="100%"></p>
+
+<h4>
+<a id="actual-vs-estimate-scatterplots-and-plotting-least-squares-regression-lines" class="anchor" href="#actual-vs-estimate-scatterplots-and-plotting-least-squares-regression-lines" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Actual vs. Estimate Scatterplots and Plotting Least Squares Regression Lines</h4>
+
+<p>This function was originally created to compare accuracy of a model-fitting algorithm's parameter estimates compared to the true ones. As such, there exists an option third argument in <code>pqscatter</code> which accepts a cell array containing one or more of <code>'match'</code>, which plots a diagonal line from the origin to the top right-hand corner, or <code>'lm'</code> which plots an ordinary least-squares regression line to the data series.</p>
+
+<div class="highlight highlight-source-matlab"><pre>
+<span class="pl-c">% Creating an Actual vs. Estimate PQ ScatterPlot</span>
+
+rng(<span class="pl-c1">123</span>);
+x = <span class="pl-k">randn</span>(<span class="pl-c1">100</span>, <span class="pl-c1">1</span>);
+y = <span class="pl-c1">1.5</span>*x <span class="pl-k">+</span> <span class="pl-c1">0.2</span>*<span class="pl-k">randn</span>(<span class="pl-c1">100</span>, <span class="pl-c1">1</span>);
+
+<span class="pl-c1">figure</span>();
+s = pqscatter(x, y, {<span class="pl-s"><span class="pl-pds">'</span>match<span class="pl-pds">'</span></span>});
+pqtitle(s, <span class="pl-s"><span class="pl-pds">'</span>PQ Actual vs. Estimate Plot<span class="pl-pds">'</span></span>);
+<span class="pl-c1">xlabel</span>(<span class="pl-s"><span class="pl-pds">'</span>Actual<span class="pl-pds">'</span></span>);
+<span class="pl-c1">ylabel</span>(<span class="pl-s"><span class="pl-pds">'</span>Estimate<span class="pl-pds">'</span></span>);
+</pre></div>
+
+<p><img src="http://www.abrahamnunes.com/images/pqplot/pqactualestimate.svg" width="100%"></p>
+
+<div class="highlight highlight-source-matlab"><pre>
+<span class="pl-c">% Creating an Actual vs. Estimate PQ ScatterPlot with an additional least squares fit line</span>
+
+rng(<span class="pl-c1">123</span>);
+x = <span class="pl-k">randn</span>(<span class="pl-c1">100</span>, <span class="pl-c1">1</span>);
+y = <span class="pl-c1">1.5</span>*x <span class="pl-k">+</span> <span class="pl-c1">0.2</span>*<span class="pl-k">randn</span>(<span class="pl-c1">100</span>, <span class="pl-c1">1</span>);
+
+<span class="pl-c1">figure</span>();
+s = pqscatter(x, y, {<span class="pl-s"><span class="pl-pds">'</span>match<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>lm<span class="pl-pds">'</span></span>});
+pqtitle(s, <span class="pl-s"><span class="pl-pds">'</span>PQ Actual vs. Estimate Plot<span class="pl-pds">'</span></span>);
+<span class="pl-c1">xlabel</span>(<span class="pl-s"><span class="pl-pds">'</span>Actual<span class="pl-pds">'</span></span>);
+<span class="pl-c1">ylabel</span>(<span class="pl-s"><span class="pl-pds">'</span>Estimate<span class="pl-pds">'</span></span>);
+</pre></div>
+
+<p><img src="http://www.abrahamnunes.com/images/pqplot/pqactualestimatelm.svg" width="100%"></p>
+
+<h4>
+<a id="plotting-multiple-series-with-pqscatter" class="anchor" href="#plotting-multiple-series-with-pqscatter" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Plotting multiple series with <code>pqscatter</code>
+</h4>
+
+<p>Just have <code>y</code>  be a matrix with each series you wish to plot as an individual column in that matrix.</p>
+
+<div class="highlight highlight-source-matlab"><pre>
+<span class="pl-c">% Plotting multiple series with pqscatter</span>
+
+rng(<span class="pl-c1">123</span>);
+x = <span class="pl-k">randn</span>(<span class="pl-c1">100</span>, <span class="pl-c1">1</span>);
+y = <span class="pl-k">meshgrid</span>(<span class="pl-c1">0.5</span>:<span class="pl-c1">2.5</span>, <span class="pl-c1">1</span>:<span class="pl-c1">100</span>).*<span class="pl-k">repmat</span>(x, <span class="pl-c1">1</span>, <span class="pl-c1">3</span>) <span class="pl-k">+</span> <span class="pl-c1">0.2</span>*<span class="pl-k">randn</span>(<span class="pl-c1">100</span>, <span class="pl-c1">3</span>);
+
+<span class="pl-c1">figure</span>();
+s = pqscatter(x, y, {<span class="pl-s"><span class="pl-pds">'</span>match<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>lm<span class="pl-pds">'</span></span>});
+pqtitle(s, <span class="pl-s"><span class="pl-pds">'</span>PQ Actual vs. Estimate Plot<span class="pl-pds">'</span></span>);
+<span class="pl-c1">xlabel</span>(<span class="pl-s"><span class="pl-pds">'</span>Actual<span class="pl-pds">'</span></span>);
+<span class="pl-c1">ylabel</span>(<span class="pl-s"><span class="pl-pds">'</span>Estimate<span class="pl-pds">'</span></span>);
+</pre></div>
+
+<p><img src="http://www.abrahamnunes.com/images/pqplot/pqscattermulti.svg" width="100%"></p>
+
+<h3>
+<a id="bar-plots" class="anchor" href="#bar-plots" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bar Plots</h3>
+
+<p>Bar plots can be created with the <code>pqbar</code> function</p>
+
+<div class="highlight highlight-source-matlab"><pre>
+<span class="pl-c">% Bar plot with pqbar()</span>
+
+rng(<span class="pl-c1">123</span>);
+labelsx = {<span class="pl-s"><span class="pl-pds">'</span>A<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>B<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>C<span class="pl-pds">'</span></span>};
+y = <span class="pl-k">rand</span>(<span class="pl-c1">1</span>, <span class="pl-c1">3</span>)*<span class="pl-c1">10</span>;
+
+<span class="pl-c1">figure</span>();
+s = pqbar(labelsx, y);
+pqtitle(s, <span class="pl-s"><span class="pl-pds">'</span>PQ Bar Plot<span class="pl-pds">'</span></span>);
+<span class="pl-c1">ylabel</span>(<span class="pl-s"><span class="pl-pds">'</span>Values<span class="pl-pds">'</span></span>);
+</pre></div>
+
+<p><img src="http://www.abrahamnunes.com/images/pqplot/pqbar.svg" width="100%"></p>
+
+<p>The <code>pqbar</code> function can also plot multiple series per xlabel. Just add each series as a new column in the array <code>y</code>:</p>
+
+<div class="highlight highlight-source-matlab"><pre>
+<span class="pl-c">% Bar plot with pqbar()</span>
+
+rng(<span class="pl-c1">123</span>);
+labelsx = {<span class="pl-s"><span class="pl-pds">'</span>A<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>B<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>C<span class="pl-pds">'</span></span>};
+y = <span class="pl-k">rand</span>(<span class="pl-c1">3</span>, <span class="pl-c1">5</span>)*<span class="pl-c1">10</span>;
+
+<span class="pl-c1">figure</span>();
+s = pqbar(labelsx, y);
+pqtitle(s, <span class="pl-s"><span class="pl-pds">'</span>PQ Bar Plot Multi-Series<span class="pl-pds">'</span></span>);
+<span class="pl-c1">ylabel</span>(<span class="pl-s"><span class="pl-pds">'</span>Values<span class="pl-pds">'</span></span>);
+</pre></div>
+
+<p><img src="http://www.abrahamnunes.com/images/pqplot/pqbarmulti.svg" width="100%"></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/abrahamnunes">abrahamnunes</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
